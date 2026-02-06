@@ -1,6 +1,24 @@
 import Image from "next/image";
+// src/app/page.tsx
+import { supabase } from "@/lib/supabase";
 
 export default function Home() {
+
+    // This will log to your Terminal (Server-side)
+  console.log("Supabase URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
+  console.log("Supabase Client initialized:", !!supabase);
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <h1 className="text-4xl font-extrabold text-blue-600">
+        Connection Check
+      </h1>
+      <p className="mt-4 text-gray-500">
+        Check your terminal to see if the keys are loading!
+      </p>
+    </main>
+  );
+  
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
