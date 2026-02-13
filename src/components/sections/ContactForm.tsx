@@ -25,31 +25,29 @@ export default function ContactForm() {
     setLoading(true);
     
     // 2. Insert data using the new column names (first_name, last_name, etc.)
-    const { error } = await supabase
-      .from("contacts")
-      .insert([{ 
-        first_name: firstName, 
-        last_name: lastName, 
-        email, 
-        phone, 
-        message 
-      }]);
-
-    if (error) {
-      console.error("Submission error:", error.message);
-      alert("Something went wrong. Please try again.");
-    } else {
+    const res = await fetch("/api/consultations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          email,
+          phone,
+          message,
+          agreed,
+        }),
+      });
+      
+      const data = await res.json();
+      
+      if (!res.ok) {
+        console.error(data);
+        alert("Something went wrong. Please check your inputs.");
+        setLoading(false);
+        return;
+      }
+      
       alert("Thank you! Your message has been successfully sent.");
-      // Reset all fields upon success
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPhone("");
-      setMessage("");
-      setAgreed(false);
-    }
-    setLoading(false);
-  };
 
   return (
     <section className="w-full max-w-2xl mx-auto p-8 bg-white rounded-3xl shadow-sm border border-zinc-100 text-left my-12">
