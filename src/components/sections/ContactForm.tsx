@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { supabaseClient } from "@/lib/supabase/client";
 
 export default function ContactForm() {
   // 1. State management for new fields
@@ -47,7 +47,10 @@ export default function ContactForm() {
         return;
       }
       
-      alert("Thank you! Your message has been successfully sent.");
+        alert("Thank you! Your message has been successfully sent.");
+        setLoading(false);
+  };
+
 
   return (
     <section className="w-full max-w-2xl mx-auto p-8 bg-white rounded-3xl shadow-sm border border-zinc-100 text-left my-12">
