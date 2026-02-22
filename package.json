@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "eslint"
   },
+  "overrides": {
+    "minimatch": "10.2.1"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.95.3",
     "next": "16.1.6",
